@@ -3,44 +3,42 @@ name: Pylint
 on: [push]
 
 jobs:
-  build:
+  pylint:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: ["3.13"]
+
     steps:
-    - uses: actions/checkout@v6
+      - name: Checkout repo
+        uses: actions/checkout@v4
 
-    - name: Set up Python
-      uses: actions/setup-python@v6
-      with:
-        python-version-file: "pyproject.toml"
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
 
-    - name: Install uv
-      uses: astral-sh/setup-uv@v7
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
 
-    - name: Install dependencies
-      run: |
-        uv add pylint
+      - name: Install pylint
+        run: |
+          uv pip install pylint
 
-    - name: Install the project
-      run: |
-        uv sync --locked --all-extras --dev
+      - name: Run pylint
+        id: pylint
+        run: |
+          OUTPUT=$(uv run pylint $(git ls-files "*.py") --score=y)
+          echo "$OUTPUT"
 
-    - name: Analysing the code with pylint
-      id: pylint
-      run: |
-        PYLINT_OUTPUT=$(uv run python3 -m pylint $(git ls-files '*.py') --output-format=text)
-        echo "$PYLINT_OUTPUT"
-        SCORE=$(echo "$PYLINT_OUTPUT" | grep -oP 'Your code has been rated at \K[0-9]+(\.[0-9]+)?')
-        echo "Pylint score: $SCORE"
-        echo "score=$SCORE" >> $GITHUB_OUTPUT
+          SCORE=$(echo "$OUTPUT" | sed -n 's/^Your code has been rated at \([0-9.]*\)\/.*/\1/p')
+          echo "Detected score: $SCORE"
 
-    - name: Check Pylint score
-      run: |
-        if (( $(echo "${{ steps.pylint.outputs.score }} < 5" | bc -l) )); then
-          echo "Pylint score is below 5. Failing the build."
-          exit 1
-        else
-          echo "Pylint score is acceptable."
-        fi
+          echo "score=$SCORE" >> "$GITHUB_OUTPUT"
+
+      - name: Check Pylint score
+        run: |
+          python - <<EOF
+          score = float("${{ steps.pylint.outputs.score }}")
+          if score < 5:
+            raise SystemExit("Pylint score is below 5. Failing build.")
+          print("Pylint score is acceptable:", score)
+          EOF
+
