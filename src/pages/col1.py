@@ -32,15 +32,14 @@ def make_fig(sort_year, db_values=db_values, years=years):
     return fig
 
 
-def col1(col):
-    with col:
-        subcol1, subcol2 = st.columns([2, 1])
-        with subcol2:
-            st.metric("Radio evolution 95-19", "+40%")
-            st.metric("TV evolution 95-19", "+43%")
-        st.header("Évolution 1995-2019")
+with st.container() as col:
+    subcol1, subcol2 = st.columns([2, 1])
+    with subcol2:
+        st.metric("Radio evolution 95-19", "+40%")
+        st.metric("TV evolution 95-19", "+43%")
+    st.header("Évolution 1995-2019")
 
-        year = st.slider('Année sur laquelle le tri est effectué', min_value=min(years), max_value=max(years), value=max(years), step=1)
-        fig = make_fig(year)
-        st.pyplot(fig)
-        plt.close(fig)
+    year = st.slider('Année sur laquelle le tri est effectué', min_value=min(years), max_value=max(years), value=max(years), step=1)
+    fig = make_fig(year)
+    st.pyplot(fig)
+    plt.close(fig)
