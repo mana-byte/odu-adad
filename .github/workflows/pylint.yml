@@ -7,38 +7,30 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
           python-version: "3.13"
 
-      - name: Install uv
-        uses: astral-sh/setup-uv@v3
+      - uses: astral-sh/setup-uv@v3
 
       - name: Install pylint
-        run: |
-          uv pip install pylint
+        run: uv pip install --system pylint
 
       - name: Run pylint
         id: pylint
         run: |
-          OUTPUT=$(uv run pylint $(git ls-files "*.py") --score=y)
+          OUTPUT=$(pylint $(git ls-files "*.py") --score=y)
           echo "$OUTPUT"
 
           SCORE=$(echo "$OUTPUT" | sed -n 's/^Your code has been rated at \([0-9.]*\)\/.*/\1/p')
-          echo "Detected score: $SCORE"
-
           echo "score=$SCORE" >> "$GITHUB_OUTPUT"
 
-      - name: Check Pylint score
+      - name: Check score
         run: |
           python - <<EOF
-          score = float("${{ steps.pylint.outputs.score }}")
-          if score < 5:
-            raise SystemExit("Pylint score is below 5. Failing build.")
-          print("Pylint score is acceptable:", score)
+          score=float("${{ steps.pylint.outputs.score }}")
+          assert score >= 5, f"Pylint score too low: {score}"
+          print("Score OK:", score)
           EOF
-
