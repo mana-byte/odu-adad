@@ -1,9 +1,5 @@
-from numpy import column_stack
 import streamlit as st
 import pandas as pd
-import matplotlib.pyplot as plt
-from matplotlib.colors import Normalize
-from matplotlib.cm import ScalarMappable
 
 def bar_plots_radio_tv():
     radio_col, tv_col = st.columns(2, gap="large")

@@ -10,4 +10,5 @@ dependencies = [
     "plotly>=6.5.2",
     "seaborn>=0.13.2",
     "streamlit>=1.52.2",
+    "streamlit-elements>=0.1.0",
 ]
