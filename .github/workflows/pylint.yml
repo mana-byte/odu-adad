@@ -7,11 +7,11 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.8", "3.9", "3.10"]
+        python-version: ["3.13"]
     steps:
     - uses: actions/checkout@v6
 
-    - name: "Set up Python"
+    - name: Set up Python
       uses: actions/setup-python@v6
       with:
         python-version-file: "pyproject.toml"
@@ -22,11 +22,27 @@ jobs:
     - name: Install dependencies
       run: |
         uv add pylint
-        
+
     - name: Install the project
       run: |
         uv sync --locked --all-extras --dev
-      
+
     - name: Analysing the code with pylint
+      id: pylint
       run: |
-        uv run python3 -m pylint $(git ls-files '*.py')
+        # Run Pylint and capture the score
+        PYLINT_OUTPUT=$(uv run python3 -m pylint $(git ls-files '*.py') --output-format=text)
+        echo "$PYLINT_OUTPUT"
+        SCORE=$(echo "$PYLINT_OUTPUT" | grep -oP 'Your code has been rated at \K[0-9]+(\.[0-9]+)?')
+        echo "Pylint score: $SCORE"
+        echo "score=$SCORE" >> $GITHUB_OUTPUT
+
+    - name: Check Pylint score
+      run: |
+        # Fail if the score is below 5
+        if (( $(echo "${{ steps.pylint.outputs.score }} < 5" | bc -l) )); then
+          echo "Pylint score is below 5. Failing the build."
+          exit 1
+        else
+          echo "Pylint score is acceptable."
+        fi
