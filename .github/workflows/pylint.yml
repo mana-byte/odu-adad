@@ -16,21 +16,20 @@ jobs:
       - uses: astral-sh/setup-uv@v3
 
       - name: Install pylint
-        run: uv pip install --system pylint
+        run: uv add pylint
 
       - name: Run pylint
         id: pylint
         run: |
-          OUTPUT=$(pylint $(git ls-files "*.py") --score=y)
-          echo "$OUTPUT"
-
-          SCORE=$(echo "$OUTPUT" | sed -n 's/^Your code has been rated at \([0-9.]*\)\/.*/\1/p')
-          echo "score=$SCORE" >> "$GITHUB_OUTPUT"
+          SCORE=$(uv run pylint $(git ls-files "*.py") | sed -n 's/^Your code has been rated at \([-0-9.]*\)\/.*/\1/p')
+          echo "Pylint score: $SCORE" 
+          echo "score=$SCORE" >> $GITHUB_OUTPUT
 
       - name: Check score
         run: |
-          python - <<EOF
-          score=float("${{ steps.pylint.outputs.score }}")
-          assert score >= 5, f"Pylint score too low: {score}"
-          print("Score OK:", score)
-          EOF
+          if [ ${{ steps.pylint.outputs.score }} -gt 5 ]; then
+            echo "Pylint score is acceptable." 
+          else 
+            echo "Pylint score is below 5. Failing the build." 
+            exit 1
+          fi
