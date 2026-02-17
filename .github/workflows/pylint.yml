@@ -27,9 +27,10 @@ jobs:
 
       - name: Check score
         run: |
-          if [ ${{ steps.pylint.outputs.score }} -gt 5 ]; then
-            echo "Pylint score is acceptable." 
-          else 
-            echo "Pylint score is below 5. Failing the build." 
+          score=${{ steps.pylint.outputs.score }}
+          if awk "BEGIN {exit !($score > 5)}"; then
+            echo "Pylint score is acceptable."
+          else
+            echo "Pylint score is below 5. Failing the build."
             exit 1
           fi
