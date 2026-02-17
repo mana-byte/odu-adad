@@ -4,6 +4,7 @@ import seaborn as sns
 from matplotlib.widgets import Slider
 import matplotlib.pyplot as plt
 
+
 db = pd.read_csv("./data/20190308-radio-years.csv")
 db = db[::-1]
 db_values = db.iloc[:, 4:].sort_values(by=24, axis=1)
@@ -42,8 +43,7 @@ slider = Slider(ax=axes[2], label='Année sur laquelle\nle tri est effectué', v
 slider.label.set_size(12)
 slider.on_changed(change)
 
-col1 = st.container()
-with col1:
-    st.header("Évolution 1995-2019")
-    st.pyplot(fig)
-    
+def col1(col):
+    with col:
+        st.header("Évolution 1995-2019")
+        st.pyplot(fig)
