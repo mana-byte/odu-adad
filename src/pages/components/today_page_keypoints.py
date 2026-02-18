@@ -2,7 +2,7 @@ import streamlit as st
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
-from pages.dfs import df_channels
+from data.dfs import df_channels
 
 WOMEN_COLOR = "#ff9999"
 MEN_COLOR = "#66b3ff"

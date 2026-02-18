@@ -1,6 +1,6 @@
 import streamlit as st
 
-from pages.dfs import df_channels
+from data.dfs import df_channels
 
 def bar_plots_radio_tv():
     radio_col, tv_col = st.columns(2, gap="large")

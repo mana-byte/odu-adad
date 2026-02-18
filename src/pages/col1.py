@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import plotly.graph_objects as go
 
-from pages.dfs import df_radio, df_tv
+from data.dfs import df_radio, df_tv
 
 df_radio = df_radio[::-1]
 df_values = df_radio.iloc[:, 4:]
@@ -28,7 +28,7 @@ def make_fig(sort_year, df_values=df_values, years=years):
         x=x,
         y=y,
         colorscale='Spectral',
-        colorbar=dict(title='Taux'),
+        colorbar=dict(),
         hovertemplate='Station: %{x}<br>Année: %{y}<br>Taux: %{z:.2f}<extra></extra>'
     ))
     fig.update_layout(
