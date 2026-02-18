@@ -2,24 +2,22 @@ import streamlit as st
 import pandas as pd
 import plotly.graph_objects as go
 
+from pages.dfs import df_radio, df_tv
 
-db = pd.read_csv("https://www.data.gouv.fr/api/1/datasets/r/4ac77400-054c-4a81-a770-f8e719400c78")
-db_tv = pd.read_csv("https://www.data.gouv.fr/api/1/datasets/r/5f4a8e22-7599-4789-bf60-7cf7df9a8e70")
-
-db = db[::-1]
-db_values = db.iloc[:, 4:]
-years = db["year"].astype(int).tolist()
-stations = db_values.columns.tolist()
+df_radio = df_radio[::-1]
+df_values = df_radio.iloc[:, 4:]
+years = df_radio["year"].astype(int).tolist()
+stations = df_values.columns.tolist()
 
 
-def make_fig(sort_year, db_values=db_values, years=years):
+def make_fig(sort_year, df_values=df_values, years=years):
     try:
         row_idx = years.index(int(sort_year))
     except ValueError:
         row_idx = 0
-    target = db_values.iloc[row_idx]
+    target = df_values.iloc[row_idx]
     sorted_cols = target.sort_values(ascending=True).index.tolist()
-    ordered = db_values[sorted_cols]
+    ordered = df_values[sorted_cols]
 
     z = ordered.values
     x = ordered.columns.tolist()
@@ -47,10 +45,10 @@ with col:
     subcol1, subcol2 = st.columns([2, 1])
     with subcol1:
         st.subheader("Taux d'expression moyen des femmes à la radio et à la TV")
-        radio_avg = db.iloc[:, 4:].mean(axis=1)
-        radio_series = pd.Series(radio_avg.values, index=db['year'].astype(int), name='Radio')
-        tv_avg = db_tv.iloc[:, 4:].mean(axis=1)
-        tv_series = pd.Series(tv_avg.values, index=db_tv['year'].astype(int), name='TV')
+        radio_avg = df_radio.iloc[:, 4:].mean(axis=1)
+        radio_series = pd.Series(radio_avg.values, index=df_radio['year'].astype(int), name='Radio')
+        tv_avg = df_tv.iloc[:, 4:].mean(axis=1)
+        tv_series = pd.Series(tv_avg.values, index=df_tv['year'].astype(int), name='TV')
         chart_df = pd.concat([radio_series, tv_series], axis=1).sort_index()
         st.line_chart(chart_df)
     with subcol2:

@@ -1,7 +1,8 @@
 import streamlit as st
-import pandas as pd
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
+
+from pages.dfs import df_channels
 
 WOMEN_COLOR = "#ff9999"
 MEN_COLOR = "#66b3ff"
@@ -9,11 +10,6 @@ MEN_COLOR = "#66b3ff"
 
 def keypoints_channels():
     st.write("### Temps de parole moyen par média et par année")
-
-    # Load data
-    df_channels = pd.read_csv(
-        "https://www.data.gouv.fr/api/1/datasets/r/756365eb-a8ae-42b1-8345-76fda5dde110"
-    )
 
     # Calculate averages
     media_year_avg = {

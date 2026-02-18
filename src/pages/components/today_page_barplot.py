@@ -1,13 +1,12 @@
 import streamlit as st
-import pandas as pd
+
+from pages.dfs import df_channels
 
 def bar_plots_radio_tv():
     radio_col, tv_col = st.columns(2, gap="large")
 
     # Load data
-    df_channels = pd.read_csv(
-        "https://www.data.gouv.fr/api/1/datasets/r/756365eb-a8ae-42b1-8345-76fda5dde110"
-    )
+    
 
     # TV Data
     with tv_col:
