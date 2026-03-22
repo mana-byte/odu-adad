@@ -83,7 +83,7 @@ with col4:
         f"""
         <a href="/impact_page" target="_self" class="timeline-link">
             <span class="timeline-title">👩‍⚖️ Impact</span>
-            <p class="timeline-desc">Conséquences identifiées.</p>
+            <p class="timeline-desc">Influence de la thématique abordée</p>
         </a>
     """,
         unsafe_allow_html=True,
