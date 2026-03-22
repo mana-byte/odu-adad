@@ -63,7 +63,7 @@ def keypoints_channels():
                 textinfo="percent+label",
                 textposition="inside",
                 textfont=dict(size=24, color="white"),
-                hovertemplate="<b>%{label}</b><br>%{value:.2f}%<extra></extra>",
+                hovertemplate="<b>%{label}</b><br>%{value:.2%}<extra></extra>",
                 hoverlabel=dict(
                     font_size=18,
                 ),
