@@ -1,13 +1,12 @@
 import streamlit as st
 
-# 1. Standard Page Setup
+home = st.Page("pages/home_page.py", title="Accueil", icon="🏠")
 page_evo = st.Page("pages/evolution_page.py", title="Évolution", icon="💾")
 page_today = st.Page("pages/today_page.py", title="Aujourd'hui", icon="📺")
 page_impact = st.Page("pages/impact_page.py", title="Impact", icon="👩‍⚖️")
 
-pg = st.navigation([page_evo, page_today, page_impact], position="hidden")
+pg = st.navigation([home, page_evo, page_today, page_impact], position="hidden")
 
-# 2. Custom CSS to make the link look like a Timeline "Card"
 st.markdown(
     """
     <style>
@@ -46,7 +45,6 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-# 3. The Navigation Bar
 col1, col2, col3 = st.columns(3)
 
 with col1:
@@ -84,5 +82,4 @@ with col3:
 
 st.divider()
 
-# 4. Run the page content
 pg.run()
