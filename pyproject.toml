@@ -8,6 +8,7 @@ dependencies = [
     "numpy>=2.4.0",
     "pandas>=2.3.3",
     "plotly>=6.5.2",
+    "pylint>=4.0.4",
     "seaborn>=0.13.2",
     "streamlit>=1.52.2",
     "streamlit-elements>=0.1.0",

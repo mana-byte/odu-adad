@@ -9,7 +9,16 @@ MEN_COLOR = "#66b3ff"
 
 
 def keypoints_channels():
-    st.write("### Temps de parole moyen par média et par année")
+    st.markdown(
+        "### <span style='font-size: 24px;'>Temps de parole moyen des femmes à la Radio et Télévision entre 2019 et 2020</span>",
+        unsafe_allow_html=True,
+    )
+    st.markdown(
+        """
+    <span style='font-size: 18px;'>Sur les deux années et dans les deux types de médias, le temps de parole des hommes domine largement, se situant toujours au-dessus de la barre des 60%. Les femmes n'occupent qu'environ un tiers de l'espace vocal.</span>
+    """,
+        unsafe_allow_html=True,
+    )
 
     # Calculate averages
     media_year_avg = {
@@ -48,12 +57,18 @@ def keypoints_channels():
         fig.add_trace(
             go.Pie(
                 values=[value, 1 - value],
-                labels=["Women", "Men"],
-                hole=0.5,
+                labels=["Femme", "Homme"],
+                hole=0.4,
                 marker_colors=[WOMEN_COLOR, MEN_COLOR],
-                textinfo="percent",
+                textinfo="percent+label",
                 textposition="inside",
+                textfont=dict(size=24, color="white"),
+                hovertemplate="<b>%{label}</b><br>%{value:.2f}%<extra></extra>",
+                hoverlabel=dict(
+                    font_size=18,
+                ),
                 showlegend=False,
+                pull=[0.1, 0],
             ),
             row=row,
             col=col,
@@ -63,10 +78,13 @@ def keypoints_channels():
     fig.update_layout(
         title_text="",
         title_x=0.5,
-        title_font=dict(size=20),
-        height=800,
-        width=800,
+        title_font=dict(size=24),
+        height=1000,
+        width=1000,
         legend=dict(orientation="h", yanchor="bottom", y=-0.2, xanchor="center", x=0.5),
+        plot_bgcolor="rgba(0,0,0,0)",
+        paper_bgcolor="rgba(0,0,0,0)",
+        margin=dict(l=20, r=20, t=30, b=20),
     )
 
     # Display the figure in Streamlit
