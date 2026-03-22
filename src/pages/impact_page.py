@@ -3,6 +3,10 @@ import pandas as pd
 
 from data.dfs import df_ina
 
+st.set_page_config(
+    page_title="Impact de la thématique abordée", page_icon="📺", layout="wide"
+)
+
 db = df_ina[::-1]
 db_long_genres = []
 base_cols = [
@@ -29,15 +33,16 @@ df_2020 = df_2020.sort_values("women_expression_rate", ascending=False)
 
 values_pct = df_2020["women_expression_rate"] * 100
 
-chart_data = pd.DataFrame({
-    "Taux (%)": values_pct.values
-}, index=df_2020["genre"])
+chart_data = pd.DataFrame({"Taux (%)": values_pct.values}, index=df_2020["genre"])
 st.header("Impact des thématiques abordées sur la part de parole féminine")
 st.subheader("Classement des genres selon la part de parole féminine (2020)")
 st.bar_chart(chart_data, horizontal=True, sort="-Taux (%)")
 st.header("Chartes et législations")
-st.markdown("""
+st.markdown(
+    """
 - Loi du 4 août 2014 – Égalité femmes-hommes :  
     Reporting des données hommes/femmes obligatoire
 - Pas d'obligation de résultats
-""")
+"""
+)
+
