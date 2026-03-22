@@ -1,0 +1,36 @@
+name: Pylint
+
+on: [push]
+
+jobs:
+  pylint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - uses: astral-sh/setup-uv@v3
+
+      - name: Install pylint
+        run: uv add pylint
+
+      - name: Run pylint
+        id: pylint
+        run: |
+          SCORE=$(uv run pylint $(git ls-files "*.py") | sed -n 's/^Your code has been rated at \([-0-9.]*\)\/.*/\1/p')
+          echo "Pylint score: $SCORE" 
+          echo "score=$SCORE" >> $GITHUB_OUTPUT
+
+      - name: Check score
+        run: |
+          score=${{ steps.pylint.outputs.score }}
+          if awk "BEGIN {exit !($score > 5)}"; then
+            echo "Pylint score is acceptable."
+          else
+            echo "Pylint score is below 5. Failing the build."
+            exit 1
+          fi
