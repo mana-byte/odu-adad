@@ -26,7 +26,7 @@ st.markdown(
     .timeline-link:hover {
         background-color: rgba(151, 166, 195, 0.15);
         border-color: #ff4b4b;
-        transform: translateY(-3px);
+        transform: translateY(-3px) scale(1.05);
     }
 
     .timeline-title {
@@ -45,9 +45,18 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-col1, col2, col3 = st.columns(3)
+col1, col2, col3, col4 = st.columns([1, 12, 12, 12], gap="small")
 
 with col1:
+    st.markdown(
+        f"""
+        <a href="/" target="_self" class="timeline-link">
+            <span>◄</span>
+        </a>
+    """,
+        unsafe_allow_html=True,
+    )
+with col2:
     st.markdown(
         f"""
         <a href="/evolution_page" target="_self" class="timeline-link">
@@ -58,7 +67,7 @@ with col1:
         unsafe_allow_html=True,
     )
 
-with col2:
+with col3:
     st.markdown(
         f"""
         <a href="/today_page" target="_self" class="timeline-link">
@@ -69,7 +78,7 @@ with col2:
         unsafe_allow_html=True,
     )
 
-with col3:
+with col4:
     st.markdown(
         f"""
         <a href="/impact_page" target="_self" class="timeline-link">
