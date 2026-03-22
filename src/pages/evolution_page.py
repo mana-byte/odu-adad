@@ -36,7 +36,9 @@ def make_fig(display, df_values=df_values, years=years):
             )
         )
 
-    fig.data[-1].visible = True
+    fig.data[0].visible = True
+    for i in range(1, len(years)):
+        fig.data[i].visible = False
 
     steps = []
     for i in range(len(years) - 1, -1, -1):
@@ -161,7 +163,7 @@ with col:
                     unsafe_allow_html=True,
                 )
                 st.markdown(
-                    "<p style='text-align: center; font-size: 28px; font-weight: bold; margin: 0;'>54%</p>"
+                    "<p style='text-align: center; font-size: 28px; font-weight: bold; margin: 0; color: green'>54%</p>"
                     "<p style='text-align: center; font-size: 18px; margin: 0;'>Chérie FM - 2012</p>",
                     unsafe_allow_html=True,
                 )
@@ -171,7 +173,7 @@ with col:
                     unsafe_allow_html=True,
                 )
                 st.markdown(
-                    "<p style='text-align: center; font-size: 28px; font-weight: bold;margin: 0;'>14%</p>"
+                    "<p style='text-align: center; font-size: 28px; font-weight: bold;margin: 0;color: red'>14%</p>"
                     "<p style='text-align: center; font-size: 18px; margin: 0;'>Skyrock - 2016</p>",
                     unsafe_allow_html=True,
                 )
