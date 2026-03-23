@@ -139,7 +139,7 @@ with col:
                 )
             st.divider()
             st.markdown(
-                """<span style='font-size: 18px; display: block; margin-top: 20px;'>
+                """<span style='font-size: 18px; display: block; margin: 0 2em 2em; '>
                     On observe une augmentation du taux d'expression moyen des femmes à la radio et à la télévision, bien que les progrès soient lents et inégaux. \
                     L'absence de données pour la télévision empêche une comparaison antérieure à 2010 mais on peut tout de même constater un retard de plusieurs années \
                     par rapport à la radio, bien que les tendances soient similaires.
@@ -179,7 +179,7 @@ with col:
                 )
             st.divider()
             st.markdown(
-                """<span style='font-size: 18px; display: block; margin-top: 20px;'>
+                """<span style='font-size: 18px; display: block; margin: 0 2em 2em; '>
                     Bien qu'il y ait une tendance générale à l'amélioration, l'évolution n'est ni uniforme selon les chaînes de radio ni selon les années. \
                     Certaines stations comme RTL2 ou Europe 1 ont montré une progression régulière, tandis que d'autres comme France Musique ou Chérie FM ont \
                     connu des fluctuations plus ou moins importantes sans réel progrès sur la période. D'autres encore comme Skyrock ou RMC connu une régression.
