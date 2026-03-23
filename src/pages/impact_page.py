@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+import plotly.graph_objects as go
 
 from data.dfs import df_ina
 
@@ -32,17 +33,64 @@ df_2020 = df_long[(df_long["year"] == 2020) & (df_long["genre"] != "Non Renseign
 df_2020 = df_2020.sort_values("women_expression_rate", ascending=False)
 
 values_pct = df_2020["women_expression_rate"] * 100
+genres = df_2020["genre"].astype(str)
 
-chart_data = pd.DataFrame({"Taux (%)": values_pct.values}, index=df_2020["genre"])
-st.header("Impact des thématiques abordées sur la part de parole féminine")
-st.subheader("Classement des genres selon la part de parole féminine (2020)")
-st.bar_chart(chart_data, horizontal=True, sort="-Taux (%)")
-st.header("Chartes et législations")
-st.markdown(
-    """
-- Loi du 4 août 2014 – Égalité femmes-hommes :  
-    Reporting des données hommes/femmes obligatoire
-- Pas d'obligation de résultats
-"""
+colors = ["#19d2c9", "#66b3ff"] * (len(df_2020) // 2 + 1)
+
+fig = go.Figure(
+    data=[
+        go.Bar(
+            y=genres,
+            x=values_pct,
+            orientation="h",
+            marker=dict(color=colors[: len(df_2020)]),
+            text=values_pct.round(1).astype(str) + "%",
+            textposition="outside",
+            textfont=dict(size=16, color="white"),
+            hovertemplate="<b>%{y}</b><br>%{x:.1f}%<extra></extra>",
+            hoverlabel=dict(bgcolor="black", font_size=16, font_color="white"),
+        )
+    ]
 )
 
+fig.update_layout(
+    title="",
+    xaxis_title="Part de parole féminine (%)",
+    xaxis=dict(title_font=dict(size=18), tickfont=dict(size=14)),
+    yaxis=dict(tickfont=dict(size=14), automargin=True),
+    plot_bgcolor="rgba(0,0,0,0)",
+    paper_bgcolor="rgba(0,0,0,0)",
+    height=700,
+    margin=dict(l=220, r=20, t=70, b=50),
+)
+
+st.header("Impact des thématiques abordées sur la part de parole féminine")
+st.markdown(
+    """
+    ### <span style='font-size: 20px;'> Part de parole féminine par genre (2020) </span>
+    """,
+    unsafe_allow_html=True,
+)
+
+col_graph, col_card = st.columns([2, 1], gap="large")
+with col_graph:
+    st.plotly_chart(fig, use_container_width=True)
+
+with col_card:
+    with st.container(border=True):
+        st.markdown(
+            "<h3 style='text-align: center; margin: 0;'>Chartes et législations</h3>",
+            unsafe_allow_html=True,
+        )
+        st.divider()
+        st.markdown(
+            """
+            <span style='font-size: 18px;'>
+            <ul>
+                <li>Loi du 4 août 2014 : Égalité femmes-hommes : reporting des données hommes/femmes obligatoire</li>
+                <li>Pas d'obligation de résultats</li>
+            </ul>
+            </span>
+            """,
+            unsafe_allow_html=True,
+        )

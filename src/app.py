@@ -2,7 +2,7 @@ import streamlit as st
 
 home = st.Page("pages/home_page.py", title="Accueil", icon="🏠")
 page_evo = st.Page("pages/evolution_page.py", title="Évolution", icon="💾")
-page_today = st.Page("pages/today_page.py", title="Aujourd'hui", icon="📺")
+page_today = st.Page("pages/today_page.py", title="Données récentes", icon="📺")
 page_impact = st.Page("pages/impact_page.py", title="Impact", icon="👩‍⚖️")
 
 pg = st.navigation([home, page_evo, page_today, page_impact], position="hidden")
@@ -71,8 +71,8 @@ with col3:
     st.markdown(
         f"""
         <a href="/today_page" target="_self" class="timeline-link">
-            <span class="timeline-title">📺 Aujourd'hui</span>
-            <p class="timeline-desc">Situation <i>actuelle (2019-2020)</i>.</p>
+            <span class="timeline-title">📺 Récemment</span>
+            <p class="timeline-desc">Situation <i>récente (2019-2020)</i>.</p>
         </a>
     """,
         unsafe_allow_html=True,
@@ -83,7 +83,7 @@ with col4:
         f"""
         <a href="/impact_page" target="_self" class="timeline-link">
             <span class="timeline-title">👩‍⚖️ Impact</span>
-            <p class="timeline-desc">Conséquences identifiées.</p>
+            <p class="timeline-desc">Influence de la thématique abordée</p>
         </a>
     """,
         unsafe_allow_html=True,
