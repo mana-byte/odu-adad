@@ -105,3 +105,17 @@ with col_card:
         unsafe_allow_html=True,
         text_alignment="center",
     )
+    with st.container(border=True):
+        st.markdown(
+            "<h3 style='text-align: center; margin: 0 0 0.5em;'>Observations</h3><hr style='margin: 0.5em 0;'>",
+            unsafe_allow_html=True,
+        )
+        st.markdown(
+            """
+            <span style='font-size: 18px; display: block; margin: 0 2em 2em; '> 
+            La part de parole féminine varie considérablement selon les genres, avec des taux atteignant 44% pour la musique et descendant à 13% pour le sport. \
+            La plupart des genres sont cependant regroupés autour de 38%, ce qui pourrait s'expliquer par un manque de granularité dans le découpage des genres, certains pouvant être très hétérogènes.
+            </span>
+            """,
+            unsafe_allow_html=True,
+        )
