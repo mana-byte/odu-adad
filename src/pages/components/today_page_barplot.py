@@ -29,7 +29,7 @@ def bar_plots_radio_tv():
         st.markdown(
             """
         <span style='font-size: 18px;'>
-        Les femmes occupent une part beaucoup moins importante que celle des hommes à la télévision, et cela même de nos jours. On remarque notamment des scores particulièrement bas pour les chaînes proposant du contenu sportif.
+        la quasi-totalité des chaînes se situe sous le seuil de parité des 50 %. Seule France Ô fait figure d'exception en atteignant 55,2 % de temps de parole féminin, tandis que L'Équipe ferme le classement avec un faible 13 %.
         </span>
         """,
             unsafe_allow_html=True,
