@@ -161,9 +161,6 @@ L’état des lieux actuel révèle ainsi une situation contrastée. Si la prés
 des femmes s’est renforcée au fil du temps, elle reste inégalement répartie
 selon les médias et les formats.
 
-_(ce qu’il reste à faire : noms des chaînes les plus/parmi les moins paritaires,
-peut être essayer d’expliquer selon les sujets principaux abordés par les
-radios/TV le taux de parole des femmes)_
 
 ---
 

@@ -86,7 +86,7 @@ def bar_plots_radio_tv():
         st.markdown(
             """
         <span style='font-size: 18px;'>
-        Bien que la radio soit un média ancien, la place des femmes y reste limitée de nos jours, à l'exception notable de Fip qui fait figure d'exception.
+        Bien que la radio soit un média ancien, la place des femmes y reste limitée. On remarque que pour une majorité de stations radio, la part de parole féminine est entre 30% et 40%, un score qui est relativement bas comparé à la parité.
         </span>
         """,
             unsafe_allow_html=True,

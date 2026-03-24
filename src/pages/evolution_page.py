@@ -72,7 +72,7 @@ with col:
     subcol1, subcol2 = st.columns([2, 1], gap="large")
     with subcol1:
         st.markdown(
-            "### <span style='font-size: 20px;'>Taux d'expression moyen des femmes à la radio et à la télévision</span>",
+            "### <span style='font-size: 20px;'>Part de parole moyenne des femmes à la radio et à la télévision</span>",
             unsafe_allow_html=True,
         )
         radio_avg = df_radio.iloc[:, 4:].mean(axis=1)
@@ -140,9 +140,9 @@ with col:
             st.divider()
             st.markdown(
                 """<span style='font-size: 18px; display: block; margin: 0 2em 2em; '>
-                    On observe une augmentation du taux d'expression moyen des femmes à la radio et à la télévision, bien que les progrès soient lents et inégaux. \
-                    L'absence de données pour la télévision empêche une comparaison antérieure à 2010 mais on peut tout de même constater un retard de plusieurs années \
-                    par rapport à la radio, bien que les tendances soient similaires.
+                    Le pourcentage de parole moyen des femmes à la radio et à la télévision a augmenté sur la période étudiée, bien que les progrès soient lents et inégaux. \
+                    L'absence de données pour la télévision empêche une comparaison antérieure à 2010 mais un retard de plusieurs années par rapport à la radio reste observable, \
+                    bien que les tendances soient similaires.
                 """,
                 unsafe_allow_html=True,
             )
@@ -182,7 +182,7 @@ with col:
                 """<span style='font-size: 18px; display: block; margin: 0 2em 2em; '>
                     Bien qu'il y ait une tendance générale à l'amélioration, l'évolution n'est ni uniforme selon les chaînes de radio ni selon les années. \
                     Certaines stations comme RTL2 ou Europe 1 ont montré une progression régulière, tandis que d'autres comme France Musique ou Chérie FM ont \
-                    connu des fluctuations plus ou moins importantes sans réel progrès sur la période. D'autres encore comme Skyrock ou RMC connu une régression.
+                    connu des fluctuations plus ou moins importantes sans réel progrès sur la période. D'autres encore comme Skyrock ou RMC ont connu une régression.
                     Il y a également une grande disparité au niveau des plages de taux d'expression, avec des stations ne descendant jamais en dessous de 30% et \
                     atteignant 40% voire 50% alors que d'autres ne dépassent jamais les 20%.
                 """,
@@ -191,7 +191,7 @@ with col:
 
     with subcol4:
         st.markdown(
-            "### <span style='font-size: 20px;'>Évolution du taux d'expression des femmes moyen par chaîne de radio entre 95 et 2019</span>",
+            "### <span style='font-size: 20px;'>Évolution du pourcentage de parole féminine moyen par chaîne de radio entre 95 et 2019</span>",
             unsafe_allow_html=True,
         )
         display = st.checkbox(

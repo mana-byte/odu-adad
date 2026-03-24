@@ -10,7 +10,7 @@ header_container = st.container()
 
 col1, col2, col3 = st.columns(spec=[1, 1.8, 1])
 
-with open("src/assets/report.md", "r") as f:
+with open("src/assets/report.md", "r", encoding="utf-8") as f:
     with col2:
         report_content = f.read()
         st.markdown("# La place de la femme dans les médias à travers les années")
