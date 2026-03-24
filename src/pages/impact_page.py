@@ -79,18 +79,29 @@ with col_graph:
 with col_card:
     with st.container(border=True):
         st.markdown(
-            "<h3 style='text-align: center; margin: 0;'>Chartes et législations</h3>",
+            "<h3 style='text-align: center; margin: 0 0 0.5em;'>Chartes et législations</h3>",
             unsafe_allow_html=True,
         )
-        st.divider()
+    col1, col2 = st.columns(2, border=True)
+    with col1:
         st.markdown(
             """
-            <span style='font-size: 18px;'>
-            <ul>
-                <li>Loi du 4 août 2014 : Égalité femmes-hommes : reporting des données hommes/femmes obligatoire</li>
-                <li>Pas d'obligation de résultats</li>
-            </ul>
+            <span style='font-size: 18px; display: block; margin: 0 2em 2em; '>
+            <span style='font-size: 20px;'>Loi du 4 août 2014</span>
+            <hr style='margin: 0.5em 0;'>
+            Égalité femmes-hommes : reporting des données hommes/femmes obligatoire
             </span>
             """,
             unsafe_allow_html=True,
+            text_alignment="center",
         )
+    with col2:
+        st.markdown(
+            """
+            <span style='font-size: 18px; display: block; margin: 2em 2em 2em; '>
+            Absence de législation obligeant l'obtention de résultats
+            </span>
+        """,
+        unsafe_allow_html=True,
+        text_alignment="center",
+    )
