@@ -1,6 +1,3 @@
-from pydoc import text
-
-from narwhals import col
 import streamlit as st
 import pandas as pd
 import plotly.graph_objects as go
