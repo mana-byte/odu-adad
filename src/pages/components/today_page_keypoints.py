@@ -68,7 +68,7 @@ def keypoints_channels():
                     font_size=18,
                 ),
                 showlegend=False,
-                pull=[0.1, 0],
+                pull=[0.125, 0],
             ),
             row=row,
             col=col,
