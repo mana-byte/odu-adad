@@ -142,8 +142,8 @@ L’analyse des données les plus récentes permet d’établir une photographie
 actuelle de la répartition du temps de parole entre femmes et hommes à la radio
 et à la télévision.
 
-Les graphiques montrent qu’en 2020, les femmes représentent environ X% du temps
-de parole à la radio et X% à la télévision, contre X% pour les hommes. Ces
+Les graphiques montrent qu’en 2020, les femmes représentent environ 37% du temps
+de parole à la radio et 36.7% à la télévision, contre environ 66% pour les hommes. Ces
 proportions confirment les progrès observés sur le long terme, tout en révélant
 la persistance d’un déséquilibre.
 
